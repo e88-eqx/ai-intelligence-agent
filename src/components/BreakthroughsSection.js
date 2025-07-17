@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, Brain, Building, Zap, Target } from 'lucide-react';
+import { Calendar, Building, Zap, Target } from 'lucide-react';
 
 const BreakthroughsSection = ({ breakthroughs, searchTerm }) => {
   const filteredBreakthroughs = breakthroughs.filter(breakthrough =>
