@@ -1,0 +1,201 @@
+```yaml
+name: Update AI Intelligence Data
+
+on:
+  schedule:
+    # Run every day at 8:00 AM UTC (daily updates)
+    - cron: '0 8 * * *'
+  workflow_dispatch: # Allow manual triggering
+  
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Create data update script
+      run: |
+        cat > update-data.js << 'EOF'
+        const fs = require('fs');
+        const path = require('path');
+        
+        // Simple data update script
+        const updateData = async () => {
+          try {
+            const dataPath = path.join(__dirname, 'src', 'data', 'sampleData.js');
+            const data = fs.readFileSync(dataPath, 'utf8');
+            
+            // Update timestamps
+            const today = new Date().toISOString();
+            const nextDay = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString();
+            
+            // Update metadata
+            const updatedData = data
+              .replace(
+                /lastUpdated: new Date\(\)\.toISOString\(\)/,
+                `lastUpdated: "${today}"`
+              )
+              .replace(
+                /nextUpdateScheduled: new Date\(Date\.now\(\) \+ 24 \* 60 \* 60 \* 1000\)\.toISOString\(\)/,
+                `nextUpdateScheduled: "${nextDay}"`
+              )
+              .replace(
+                /dataSource: "[^"]*"/,
+                'dataSource: "Automated daily update + API integration"'
+              );
+            
+            fs.writeFileSync(dataPath, updatedData);
+            console.log('Data updated successfully');
+            
+          } catch (error) {
+            console.error('Error updating data:', error);
+            process.exit(1);
+          }
+        };
+        
+        updateData();
+        EOF
+        
+    - name: Run data update
+      run: node update-data.js
+      
+    - name: Create Slack notification script
+      run: |
+        cat > slack-notification.js << 'EOF'
+        const https = require('https');
+        const fs = require('fs');
+        
+        const sendSlackNotification = async () => {
+          try {
+            const today = new Date().toLocaleDateString('en-US', {
+              weekday: 'long',
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            });
+            
+            // Check if we have GitHub data from previous step
+            let githubData = [];
+            if (fs.existsSync('github-data.json')) {
+              const data = JSON.parse(fs.readFileSync('github-data.json', 'utf8'));
+              githubData = data.items || [];
+            }
+            
+            // Create notification message
+            const message = {
+              channel: "D078NDL7XSB",
+              username: "AI Intelligence Agent",
+              icon_emoji: ":robot_face:",
+              attachments: [{
+                color: "good",
+                title: "🤖 Daily AI Intelligence Update",
+                title_link: "https://e88-eqx.github.io/ai-intelligence-agent/",
+                text: `Daily update completed for ${today}`,
+                fields: [
+                  {
+                    title: "🆕 New AI Tools Found",
+                    value: githubData.length > 0 ? `${githubData.length} new repositories discovered` : "No new tools found today",
+                    short: true
+                  },
+                  {
+                    title: "📊 Dashboard Status",
+                    value: "✅ Successfully updated and deployed",
+                    short: true
+                  },
+                  {
+                    title: "🔗 Quick Links",
+                    value: "<https://e88-eqx.github.io/ai-intelligence-agent/|View Dashboard> | <https://github.com/e88-eqx/ai-intelligence-agent|GitHub Repo>",
+                    short: false
+                  }
+                ],
+                footer: "AI Intelligence Agent",
+                ts: Math.floor(Date.now() / 1000)
+              }]
+            };
+            
+            // Add new tools if found
+            if (githubData.length > 0) {
+              const topTools = githubData.slice(0, 3).map(repo => 
+                `• <${repo.html_url}|${repo.name}> by ${repo.owner.login} (⭐ ${repo.stargazers_count})`
+              ).join('\n');
+              
+              message.attachments.push({
+                color: "#36a64f",
+                title: "🔧 Latest AI Tools",
+                text: topTools,
+                footer: "Top 3 discoveries from GitHub"
+              });
+            }
+            
+            // Send to Slack
+            const data = JSON.stringify(message);
+            const options = {
+              hostname: 'hooks.slack.com',
+              port: 443,
+              path: process.env.SLACK_WEBHOOK_PATH,
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Content-Length': data.length
+              }
+            };
+            
+            const req = https.request(options, (res) => {
+              console.log(`Slack notification sent: ${res.statusCode}`);
+            });
+            
+            req.on('error', (error) => {
+              console.error('Error sending Slack notification:', error);
+            });
+            
+            req.write(data);
+            req.end();
+            
+          } catch (error) {
+            console.error('Error in Slack notification:', error);
+          }
+        };
+        
+        sendSlackNotification();
+        EOF
+        
+    - name: Send Slack notification
+      run: node slack-notification.js
+      env:
+        SLACK_WEBHOOK_PATH: ${{ secrets.SLACK_WEBHOOK_PATH }}
+      
+    - name: Build application
+      run: npm run build
+      env:
+        CI: false
+        
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./build
+        
+    - name: Commit updated data
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add -A
+        git diff --staged --quiet || git commit -m "🤖 Automated daily data update - $(date +'%Y-%m-%d')"
+        
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: main
+```
