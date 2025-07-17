@@ -4,7 +4,7 @@ export const sampleData = {
     lastUpdated: new Date().toISOString(),
     version: "1.0.0",
     dataSource: "Manual curation + API integration",
-    nextUpdateScheduled: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString() // 7 days from now
+    nextUpdateScheduled: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString() // 24 hours from now
   },
   summary: {
     totalTools: 24,

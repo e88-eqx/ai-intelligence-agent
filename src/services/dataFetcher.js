@@ -170,7 +170,8 @@ class DataFetcher {
           ...sampleData.metadata,
           lastUpdated: new Date().toISOString(),
           dataSource: 'GitHub API + Reddit + RSS feeds + Manual curation',
-          apiSources: ['GitHub', 'Reddit', 'RSS feeds']
+          apiSources: ['GitHub', 'Reddit', 'RSS feeds'],
+          nextUpdateScheduled: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString() // 24 hours from now
         },
         newTools: [
           ...sampleData.newTools,
@@ -197,7 +198,8 @@ class DataFetcher {
           ...sampleData.metadata,
           lastUpdated: new Date().toISOString(),
           dataSource: 'Sample data (API fetch failed)',
-          error: error.message
+          error: error.message,
+          nextUpdateScheduled: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString() // 24 hours from now
         }
       };
     }

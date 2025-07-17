@@ -27,7 +27,7 @@ A comprehensive dashboard for tracking AI developments, tools, and trends to hel
 - **Real-time Updates**: Changes reflect immediately on the dashboard
 
 ### 🤖 Automated Updates
-- **Weekly Automation**: GitHub Actions automatically update data every Monday
+- **Daily Automation**: GitHub Actions automatically update data every day at 8:00 AM UTC
 - **Scheduled Deployment**: Automatic rebuilding and deployment
 - **Update Notifications**: GitHub Actions summaries with update status
 - **Manual Triggers**: Option to manually trigger updates anytime
@@ -133,7 +133,7 @@ The dashboard integrates with multiple APIs:
 
 ### Automated Updates
 The app includes GitHub Actions workflows for:
-- **Weekly Updates**: Runs every Monday at 8:00 AM UTC
+- **Daily Updates**: Runs every day at 8:00 AM UTC
 - **Data Refresh**: Updates timestamps and fetches new data
 - **Auto-deployment**: Rebuilds and deploys automatically
 - **Update Notifications**: Provides status summaries
