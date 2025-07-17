@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, Filter, TrendingUp, AlertTriangle, Zap, Brain, Users, BarChart3 } from 'lucide-react';
 import { sampleData } from './data/sampleData';
+import dataFetcher from './services/dataFetcher';
 import './App.css';
 
 // Components
@@ -10,12 +11,16 @@ import MajorUpdatesSection from './components/MajorUpdatesSection';
 import BreakthroughsSection from './components/BreakthroughsSection';
 import ConcernsSection from './components/ConcernsSection';
 import MarketTrendsSection from './components/MarketTrendsSection';
+import CMSPanel from './components/CMSPanel';
 
 function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedAudience, setSelectedAudience] = useState('all');
+  const [data, setData] = useState(sampleData);
+  const [loading, setLoading] = useState(false);
+  const [lastApiUpdate, setLastApiUpdate] = useState(null);
 
   const tabs = [
     { id: 'dashboard', label: 'Dashboard', icon: BarChart3 },
@@ -29,14 +34,64 @@ function App() {
   const categories = ['all', 'Developer', 'Designer', 'Product Manager', 'Business'];
   const audiences = ['all', 'Developer', 'Designer', 'Product Manager', 'Business'];
 
+  // Fetch real-time data on component mount
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const realTimeData = await dataFetcher.fetchAllData();
+        setData(realTimeData);
+        setLastApiUpdate(new Date().toISOString());
+      } catch (error) {
+        console.error('Error fetching real-time data:', error);
+        // Keep sample data as fallback
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+    
+    // Set up periodic updates (every 30 minutes)
+    const interval = setInterval(fetchData, 30 * 60 * 1000);
+    
+    return () => clearInterval(interval);
+  }, []);
+
+  // Handle manual data refresh
+  const handleDataRefresh = async () => {
+    setLoading(true);
+    try {
+      const realTimeData = await dataFetcher.fetchAllData();
+      setData(realTimeData);
+      setLastApiUpdate(new Date().toISOString());
+    } catch (error) {
+      console.error('Error refreshing data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Handle CMS data updates
+  const handleDataUpdate = (newData) => {
+    setData({
+      ...newData,
+      metadata: {
+        ...newData.metadata,
+        lastUpdated: new Date().toISOString(),
+        dataSource: 'Manual CMS update + API integration'
+      }
+    });
+  };
+
   const renderContent = () => {
     switch (activeTab) {
       case 'dashboard':
-        return <Dashboard data={sampleData} />;
+        return <Dashboard data={data} />;
       case 'tools':
         return (
           <NewToolsSection 
-            tools={sampleData.newTools}
+            tools={data.newTools}
             searchTerm={searchTerm}
             selectedCategory={selectedCategory}
             selectedAudience={selectedAudience}
@@ -45,33 +100,33 @@ function App() {
       case 'updates':
         return (
           <MajorUpdatesSection 
-            updates={sampleData.majorUpdates}
+            updates={data.majorUpdates}
             searchTerm={searchTerm}
           />
         );
       case 'breakthroughs':
         return (
           <BreakthroughsSection 
-            breakthroughs={sampleData.breakthroughs}
+            breakthroughs={data.breakthroughs}
             searchTerm={searchTerm}
           />
         );
       case 'concerns':
         return (
           <ConcernsSection 
-            concerns={sampleData.concerns}
+            concerns={data.concerns}
             searchTerm={searchTerm}
           />
         );
       case 'trends':
         return (
           <MarketTrendsSection 
-            trends={sampleData.marketTrends}
+            trends={data.marketTrends}
             searchTerm={searchTerm}
           />
         );
       default:
-        return <Dashboard data={sampleData} />;
+        return <Dashboard data={data} />;
     }
   };
 
@@ -181,6 +236,8 @@ function App() {
           </div>
         </div>
       </footer>
+      
+      <CMSPanel data={data} onDataUpdate={handleDataUpdate} />
     </div>
   );
 }

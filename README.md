@@ -4,6 +4,7 @@ A comprehensive dashboard for tracking AI developments, tools, and trends to hel
 
 ## 🚀 Features
 
+### 📊 Core Dashboard Features
 - **Dashboard Overview**: Weekly AI intelligence summary with key metrics
 - **New AI Tools**: Discover the latest AI tools categorized by audience (Developer, Designer, Product Manager, Business)
 - **Major Updates**: Track significant updates to existing AI platforms
@@ -12,6 +13,30 @@ A comprehensive dashboard for tracking AI developments, tools, and trends to hel
 - **Market Trends**: Analyze growth patterns and emerging trends in AI
 - **Search & Filtering**: Find relevant information quickly with robust search and filter capabilities
 - **Mobile Responsive**: Optimized for all device sizes
+
+### 🔄 Real-Time Data Integration
+- **API Integration**: Automatically fetches data from GitHub, Reddit, and RSS feeds
+- **Live Updates**: Real-time data refresh every 30 minutes
+- **Data Freshness Indicators**: Visual status indicators showing data age
+- **Fallback System**: Graceful handling of API failures with sample data
+
+### 📝 Content Management System
+- **Built-in CMS**: Manage content directly from the dashboard
+- **Add/Edit/Delete**: Full CRUD operations for all content types
+- **Export/Import**: JSON-based data export and import functionality
+- **Real-time Updates**: Changes reflect immediately on the dashboard
+
+### 🤖 Automated Updates
+- **Weekly Automation**: GitHub Actions automatically update data every Monday
+- **Scheduled Deployment**: Automatic rebuilding and deployment
+- **Update Notifications**: GitHub Actions summaries with update status
+- **Manual Triggers**: Option to manually trigger updates anytime
+
+### 🔍 Enhanced Data Sources
+- **GitHub API**: Latest AI repositories and tools
+- **Reddit Integration**: AI news from r/MachineLearning
+- **RSS Feeds**: Technology news from major publications
+- **Manual Curation**: Team-managed content through CMS
 
 ## 🛠️ Tech Stack
 
@@ -78,6 +103,40 @@ npm run build
 ```
 
 This builds the app for production to the `build` folder.
+
+### Deploy to GitHub Pages
+
+```bash
+npm run deploy
+```
+
+This builds and deploys the app to GitHub Pages automatically.
+
+## 🔧 Configuration
+
+### Environment Variables
+Create a `.env` file in the root directory for API keys:
+
+```env
+REACT_APP_GITHUB_TOKEN=your_github_token_here
+REACT_APP_REDDIT_CLIENT_ID=your_reddit_client_id_here
+REACT_APP_NEWS_API_KEY=your_news_api_key_here
+```
+
+### API Data Sources
+The dashboard integrates with multiple APIs:
+
+1. **GitHub API**: Fetches latest AI repositories
+2. **Reddit API**: Gets AI news from r/MachineLearning
+3. **RSS Feeds**: Pulls from technology news sources
+4. **Manual Data**: CMS-managed content
+
+### Automated Updates
+The app includes GitHub Actions workflows for:
+- **Weekly Updates**: Runs every Monday at 8:00 AM UTC
+- **Data Refresh**: Updates timestamps and fetches new data
+- **Auto-deployment**: Rebuilds and deploys automatically
+- **Update Notifications**: Provides status summaries
 
 ## 📱 Mobile Responsive
 

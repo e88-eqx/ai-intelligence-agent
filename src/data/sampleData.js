@@ -1,5 +1,11 @@
 // Sample data for AI Intelligence Agent Dashboard
 export const sampleData = {
+  metadata: {
+    lastUpdated: new Date().toISOString(),
+    version: "1.0.0",
+    dataSource: "Manual curation + API integration",
+    nextUpdateScheduled: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString() // 7 days from now
+  },
   summary: {
     totalTools: 24,
     newTools: 8,

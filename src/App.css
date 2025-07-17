@@ -430,6 +430,516 @@ body {
   color: #16a34a;
 }
 
+/* Last Updated Component */
+.last-updated-container {
+  margin-bottom: 2rem;
+}
+
+.last-updated-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.last-updated-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.status-dot.status-fresh {
+  background: #10b981;
+}
+
+.status-dot.status-current {
+  background: #f59e0b;
+}
+
+.status-dot.status-stale {
+  background: #ef4444;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.status-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.version-badge {
+  background: #f3f4f6;
+  color: #6b7280;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid #d1d5db;
+}
+
+.last-updated-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.update-info {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.info-icon {
+  width: 20px;
+  height: 20px;
+  color: #6b7280;
+  margin-top: 0.125rem;
+}
+
+.info-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.info-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.info-value {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.info-subtitle {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.update-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.refresh-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.refresh-button:hover {
+  background: #2563eb;
+}
+
+.button-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* CMS Panel */
+.cms-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.cms-toggle-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s;
+}
+
+.cms-toggle-button:hover {
+  background: #4338ca;
+  transform: translateY(-1px);
+}
+
+.cms-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.cms-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 600px;
+  height: 100vh;
+  background: white;
+  border-left: 1px solid #e5e7eb;
+  z-index: 1000;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -4px 0 6px rgba(0, 0, 0, 0.1);
+}
+
+.cms-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.cms-header h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.cms-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.cms-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: #6b7280;
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: background-color 0.2s;
+}
+
+.cms-action-btn:hover {
+  background: #4b5563;
+}
+
+.cms-close-btn {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  background: #dc2626;
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.cms-close-btn:hover {
+  background: #b91c1c;
+}
+
+.cms-tabs {
+  display: flex;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.cms-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: #6b7280;
+  transition: all 0.2s;
+  border-bottom: 2px solid transparent;
+}
+
+.cms-tab:hover {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.cms-tab.active {
+  background: white;
+  color: #4f46e5;
+  border-bottom-color: #4f46e5;
+}
+
+.tab-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.cms-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.cms-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.cms-add-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: #10b981;
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.cms-add-btn:hover {
+  background: #059669;
+}
+
+.cms-edit-panel {
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.cms-edit-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.cms-edit-header h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.cms-edit-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.cms-save-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: #10b981;
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: background-color 0.2s;
+}
+
+.cms-save-btn:hover {
+  background: #059669;
+}
+
+.cms-cancel-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: #6b7280;
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: background-color 0.2s;
+}
+
+.cms-cancel-btn:hover {
+  background: #4b5563;
+}
+
+.cms-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.cms-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cms-item {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  transition: box-shadow 0.2s;
+}
+
+.cms-item:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.cms-item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cms-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cms-item-header h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.cms-item-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.cms-edit-btn,
+.cms-delete-btn {
+  display: flex;
+  align-items: center;
+  padding: 0.25rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.cms-edit-btn {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.cms-edit-btn:hover {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.cms-delete-btn {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.cms-delete-btn:hover {
+  background: #fee2e2;
+}
+
+.cms-item-description {
+  color: #6b7280;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.cms-item-meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.btn-icon {
+  width: 16px;
+  height: 16px;
+}
+
 /* Market Trends Summary */
 .market-trends-summary {
   background: white;
