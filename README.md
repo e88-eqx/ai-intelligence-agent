@@ -28,6 +28,8 @@ A comprehensive dashboard for tracking AI developments, tools, and trends to hel
 
 ### 🤖 Automated Updates
 - **Daily Automation**: GitHub Actions automatically update data every day at 8:00 AM UTC
+- **Slack Notifications**: Daily updates sent directly to your Slack channel
+- **New Tool Discovery**: Get notified about the latest AI tools from GitHub
 - **Scheduled Deployment**: Automatic rebuilding and deployment
 - **Update Notifications**: GitHub Actions summaries with update status
 - **Manual Triggers**: Option to manually trigger updates anytime
@@ -134,9 +136,17 @@ The dashboard integrates with multiple APIs:
 ### Automated Updates
 The app includes GitHub Actions workflows for:
 - **Daily Updates**: Runs every day at 8:00 AM UTC
+- **Slack Integration**: Sends notifications to your team channel
 - **Data Refresh**: Updates timestamps and fetches new data
 - **Auto-deployment**: Rebuilds and deploys automatically
 - **Update Notifications**: Provides status summaries
+
+### Slack Integration
+The dashboard includes automated Slack notifications:
+- **Daily Updates**: Sent to channel `D078NDL7XSB` in equivalentx.slack.com
+- **New Tool Alerts**: Notifications when new AI tools are discovered
+- **Status Updates**: Confirmation of successful updates and deployments
+- **Quick Links**: Direct links to dashboard and GitHub repository
 
 ## 📱 Mobile Responsive
 
