@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/ai-intelligence-agent/static/css/main.887a3214.css",
+    "main.css": "/ai-intelligence-agent/static/css/main.4d976e65.css",
     "main.js": "/ai-intelligence-agent/static/js/main.e8321335.js",
     "index.html": "/ai-intelligence-agent/index.html",
-    "main.887a3214.css.map": "/ai-intelligence-agent/static/css/main.887a3214.css.map",
+    "main.4d976e65.css.map": "/ai-intelligence-agent/static/css/main.4d976e65.css.map",
     "main.e8321335.js.map": "/ai-intelligence-agent/static/js/main.e8321335.js.map"
   },
   "entrypoints": [
-    "static/css/main.887a3214.css",
+    "static/css/main.4d976e65.css",
     "static/js/main.e8321335.js"
   ]
 }
