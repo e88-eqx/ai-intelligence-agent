@@ -6,7 +6,7 @@ A real-time AI intelligence dashboard for tracking AI developments, tools, and t
 
 ### 📊 Core Dashboard Features
 - **Dashboard Overview**: Weekly AI intelligence summary with key metrics
-- **New AI Tools**: Discover the latest AI tools categorized by audience (Developer, Designer, Product Manager, Business)
+- **🌟 New AI Tools**: Discover emerging AI tools from indie developers and startups (our most compelling feature!)
 - **Major Updates**: Track significant updates to existing AI platforms
 - **Breakthroughs**: Monitor key research breakthroughs and technological advances
 - **Concerns & Challenges**: Stay informed about current AI challenges and mitigation strategies
@@ -14,11 +14,12 @@ A real-time AI intelligence dashboard for tracking AI developments, tools, and t
 - **Search & Filtering**: Find relevant information quickly with robust search and filter capabilities
 - **Mobile Responsive**: Optimized for all device sizes
 
-### 🔄 Real-Time Data Integration
-- **API Integration**: Automatically fetches data from GitHub, Reddit, and RSS feeds
-- **Live Updates**: Real-time data refresh every 30 minutes
-- **Data Freshness Indicators**: Visual status indicators showing data age
-- **Fallback System**: Graceful handling of API failures with sample data
+### 🔄 Multi-Source Tool Discovery
+- **🎯 Emerging Tool Focus**: Specifically targets non-mainstream AI tools from indie developers and startups
+- **Big Tech Filtering**: Automatically excludes tools from major tech companies (Google, Microsoft, Meta, etc.)
+- **Multi-Platform Integration**: Combines data from 5+ sources for comprehensive coverage
+- **Quality Scoring**: Intelligent ranking based on community engagement and innovation
+- **Real-time Discovery**: Fresh tools discovered daily from multiple communities
 
 ### 📝 Content Management System
 - **Built-in CMS**: Manage content directly from the dashboard
@@ -32,11 +33,20 @@ A real-time AI intelligence dashboard for tracking AI developments, tools, and t
 - **Instant Updates**: Changes reflect immediately after manual refresh
 - **No Automation**: Full control over when data is refreshed
 
-### 🔍 Enhanced Data Sources
-- **GitHub API**: Latest AI repositories and tools
-- **Reddit Integration**: AI news from r/MachineLearning
-- **RSS Feeds**: Technology news from major publications
-- **Manual Curation**: Team-managed content through CMS
+### 🔍 Enhanced Data Sources for Emerging Tools
+- **🐙 GitHub API**: Trending AI repositories (filtered for indie projects created in 2024+)
+- **🚀 Product Hunt API**: Latest AI tool launches from indie makers
+- **🧡 Hacker News API**: Show HN submissions featuring new AI tools
+- **📰 Reddit Integration**: AI discussions from r/MachineLearning community
+- **📡 RSS Feeds**: Technology news from major publications
+- **✍️ Manual Curation**: Team-managed content through built-in CMS
+
+**🎯 Special Focus**: Our algorithm specifically identifies and promotes:
+- Tools from independent developers and small startups
+- Open-source AI projects with innovative approaches
+- Recently launched tools (2024+) that haven't gained mainstream attention
+- Community-driven projects with strong technical merit
+- Tools that offer unique value propositions beyond big tech solutions
 
 ## 🛠️ Tech Stack
 
@@ -64,11 +74,20 @@ A real-time AI intelligence dashboard for tracking AI developments, tools, and t
 
 ## 🎯 Target Audience
 
-This dashboard is designed for mixed teams including:
-- **Developers**: Code-related AI tools and development platforms
-- **Designers**: Creative AI tools and design assistants
-- **Product Managers**: Project management and collaboration tools
-- **Business**: Enterprise AI solutions and market insights
+This dashboard is designed for teams seeking competitive advantage through early adoption:
+- **🔧 Developers**: Discover cutting-edge AI libraries, frameworks, and development tools before they go mainstream
+- **🎨 Designers**: Find innovative AI creative tools and design assistants from indie creators
+- **📊 Product Managers**: Identify emerging AI capabilities for product differentiation
+- **💼 Business Leaders**: Spot AI opportunities and tools before competitors
+- **🚀 Startups & Entrepreneurs**: Find affordable AI solutions not dominated by big tech
+- **🔬 Researchers**: Track the latest AI innovations and experimental tools
+
+**💡 Why Focus on Emerging Tools?**
+- **Cost Advantage**: Many indie tools offer better pricing than enterprise solutions
+- **Innovation**: Smaller teams often experiment with cutting-edge approaches
+- **Customization**: Indie developers are more responsive to user feedback
+- **Community**: Better support and direct access to creators
+- **Competitive Edge**: Early adoption of powerful tools before they become mainstream
 
 ## 🚀 Getting Started
 
@@ -124,12 +143,40 @@ REACT_APP_NEWS_API_KEY=your_news_api_key_here
 ```
 
 ### API Data Sources
-The dashboard integrates with multiple APIs:
+The dashboard integrates with multiple APIs for comprehensive emerging tool discovery:
 
-1. **GitHub API**: Fetches latest AI repositories
-2. **Reddit API**: Gets AI news from r/MachineLearning
-3. **RSS Feeds**: Pulls from technology news sources
-4. **Manual Data**: CMS-managed content
+1. **🐙 GitHub API**: Advanced search for emerging AI repositories
+   - Filters out big tech companies
+   - Focuses on projects created in 2024+
+   - Multiple search strategies for broader coverage
+   - Quality scoring based on stars and community engagement
+
+2. **🚀 Product Hunt API**: Latest AI tool launches
+   - Focuses on indie maker submissions
+   - Excludes tools from major corporations
+   - Community voting and engagement metrics
+   - Real-time launch tracking
+
+3. **🧡 Hacker News API**: Show HN AI tool discoveries
+   - Community-submitted AI tools and projects
+   - Technical discussions and feedback
+   - Indie developer showcase platform
+   - Quality filtering based on community response
+
+4. **📰 Reddit API**: AI news from r/MachineLearning
+   - Community discussions about new tools
+   - Technical insights and reviews
+   - Emerging trends identification
+
+5. **📡 RSS Feeds**: Technology news aggregation
+   - Major publication coverage
+   - Industry trend analysis
+   - Cross-reference validation
+
+6. **✍️ Manual Data**: CMS-managed content
+   - Team curation and validation
+   - Quality control and categorization
+   - Custom insights and analysis
 
 ### Manual Updates
 The app provides on-demand data refresh:
