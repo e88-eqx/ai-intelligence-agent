@@ -569,13 +569,27 @@ body {
   transition: background-color 0.2s;
 }
 
-.refresh-button:hover {
+.refresh-button:hover:not(:disabled) {
   background: #2563eb;
+}
+
+.refresh-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .button-icon {
   width: 16px;
   height: 16px;
+}
+
+.button-icon.spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 /* CMS Panel */

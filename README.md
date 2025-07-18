@@ -1,6 +1,6 @@
-# AI Intelligence Agent
+# AINow
 
-A comprehensive dashboard for tracking AI developments, tools, and trends to help teams stay at the cutting edge of artificial intelligence.
+A real-time AI intelligence dashboard for tracking AI developments, tools, and trends to help teams stay current with artificial intelligence.
 
 ## 🚀 Features
 
@@ -26,13 +26,11 @@ A comprehensive dashboard for tracking AI developments, tools, and trends to hel
 - **Export/Import**: JSON-based data export and import functionality
 - **Real-time Updates**: Changes reflect immediately on the dashboard
 
-### 🤖 Automated Updates
-- **Daily Automation**: GitHub Actions automatically update data every day at 8:00 AM UTC
-- **Slack Notifications**: Daily updates sent directly to your Slack channel
-- **New Tool Discovery**: Get notified about the latest AI tools from GitHub
-- **Scheduled Deployment**: Automatic rebuilding and deployment
-- **Update Notifications**: GitHub Actions summaries with update status
-- **Manual Triggers**: Option to manually trigger updates anytime
+### 🔄 Manual Updates
+- **Manual Data Refresh**: Update data on-demand via dashboard button
+- **Real-time API Integration**: Fetches latest data from GitHub, Reddit, and RSS feeds
+- **Instant Updates**: Changes reflect immediately after manual refresh
+- **No Automation**: Full control over when data is refreshed
 
 ### 🔍 Enhanced Data Sources
 - **GitHub API**: Latest AI repositories and tools
@@ -133,20 +131,12 @@ The dashboard integrates with multiple APIs:
 3. **RSS Feeds**: Pulls from technology news sources
 4. **Manual Data**: CMS-managed content
 
-### Automated Updates
-The app includes GitHub Actions workflows for:
-- **Daily Updates**: Runs every day at 8:00 AM UTC
-- **Slack Integration**: Sends notifications to your team channel
-- **Data Refresh**: Updates timestamps and fetches new data
-- **Auto-deployment**: Rebuilds and deploys automatically
-- **Update Notifications**: Provides status summaries
-
-### Slack Integration
-The dashboard includes automated Slack notifications:
-- **Daily Updates**: Sent to channel `D078NDL7XSB` in equivalentx.slack.com
-- **New Tool Alerts**: Notifications when new AI tools are discovered
-- **Status Updates**: Confirmation of successful updates and deployments
-- **Quick Links**: Direct links to dashboard and GitHub repository
+### Manual Updates
+The app provides on-demand data refresh:
+- **Manual Refresh Button**: Update data anytime via dashboard
+- **Real-time API Integration**: Fetches latest data from multiple sources
+- **Instant Updates**: Changes reflect immediately
+- **No Scheduled Updates**: Full control over when data is refreshed
 
 ## 📱 Mobile Responsive
 

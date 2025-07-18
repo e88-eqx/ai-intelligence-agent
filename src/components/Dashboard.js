@@ -2,7 +2,7 @@ import React from 'react';
 import { TrendingUp, AlertTriangle, Zap, Brain, Users, Activity } from 'lucide-react';
 import LastUpdated from './LastUpdated';
 
-const Dashboard = ({ data }) => {
+const Dashboard = ({ data, onManualUpdate, isUpdating }) => {
   const { metadata, summary, newTools, majorUpdates, breakthroughs, concerns, marketTrends } = data;
 
   const MetricCard = ({ title, value, icon: Icon, color, trend }) => (
@@ -44,11 +44,15 @@ const Dashboard = ({ data }) => {
   return (
     <div className="dashboard">
       <div className="dashboard-header">
-        <h2>AI Intelligence Dashboard</h2>
-        <p>Weekly overview of AI developments and trends</p>
+        <h2>AINow Dashboard</h2>
+        <p>Real-time overview of AI developments and trends</p>
       </div>
 
-      <LastUpdated metadata={metadata} />
+      <LastUpdated 
+        metadata={metadata} 
+        onManualUpdate={onManualUpdate}
+        isUpdating={isUpdating}
+      />
 
       <div className="metrics-grid">
         <MetricCard

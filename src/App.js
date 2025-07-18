@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Search, Filter, TrendingUp, AlertTriangle, Zap, Brain, Users, BarChart3 } from 'lucide-react';
 import { sampleData } from './data/sampleData';
 import dataFetcher from './services/dataFetcher';
@@ -19,8 +19,7 @@ function App() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedAudience, setSelectedAudience] = useState('all');
   const [data, setData] = useState(sampleData);
-  const [loading, setLoading] = useState(false);
-  const [lastApiUpdate, setLastApiUpdate] = useState(null);
+  const [isUpdating, setIsUpdating] = useState(false);
 
   const tabs = [
     { id: 'dashboard', label: 'Dashboard', icon: BarChart3 },
@@ -34,41 +33,18 @@ function App() {
   const categories = ['all', 'Developer', 'Designer', 'Product Manager', 'Business'];
   const audiences = ['all', 'Developer', 'Designer', 'Product Manager', 'Business'];
 
-  // Fetch real-time data on component mount
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const realTimeData = await dataFetcher.fetchAllData();
-        setData(realTimeData);
-        setLastApiUpdate(new Date().toISOString());
-      } catch (error) {
-        console.error('Error fetching real-time data:', error);
-        // Keep sample data as fallback
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-    
-    // Set up periodic updates (every 30 minutes)
-    const interval = setInterval(fetchData, 30 * 60 * 1000);
-    
-    return () => clearInterval(interval);
-  }, []);
-
   // Handle manual data refresh
-  const handleDataRefresh = async () => {
-    setLoading(true);
+  const handleManualUpdate = async () => {
+    setIsUpdating(true);
     try {
       const realTimeData = await dataFetcher.fetchAllData();
       setData(realTimeData);
-      setLastApiUpdate(new Date().toISOString());
+      console.log('Manual update completed successfully');
     } catch (error) {
-      console.error('Error refreshing data:', error);
+      console.error('Error during manual update:', error);
+      // Keep existing data if update fails
     } finally {
-      setLoading(false);
+      setIsUpdating(false);
     }
   };
 
@@ -87,7 +63,11 @@ function App() {
   const renderContent = () => {
     switch (activeTab) {
       case 'dashboard':
-        return <Dashboard data={data} />;
+        return <Dashboard 
+          data={data} 
+          onManualUpdate={handleManualUpdate}
+          isUpdating={isUpdating}
+        />;
       case 'tools':
         return (
           <NewToolsSection 
@@ -137,10 +117,10 @@ function App() {
           <div className="header-content">
             <div className="logo">
               <Brain className="logo-icon" />
-              <h1>AI Intelligence Agent</h1>
+              <h1>AINow</h1>
             </div>
             <div className="header-subtitle">
-              <p>Keeping teams at the cutting edge of AI</p>
+              <p>Real-time AI intelligence for teams</p>
             </div>
           </div>
         </div>
@@ -227,7 +207,7 @@ function App() {
       <footer className="app-footer">
         <div className="container">
           <div className="footer-content">
-            <p>&copy; 2024 AI Intelligence Agent. Helping teams stay ahead in AI.</p>
+            <p>&copy; 2024 AINow. Real-time AI intelligence for teams.</p>
             <div className="footer-links">
               <a href="#about">About</a>
               <a href="#contact">Contact</a>

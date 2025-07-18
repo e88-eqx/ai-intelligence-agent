@@ -1,7 +1,7 @@
 import React from 'react';
 import { Clock, RefreshCw, Database, Calendar } from 'lucide-react';
 
-const LastUpdated = ({ metadata }) => {
+const LastUpdated = ({ metadata, onManualUpdate, isUpdating }) => {
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', {
@@ -68,16 +68,20 @@ const LastUpdated = ({ metadata }) => {
             <div className="info-item">
               <Calendar className="info-icon" />
               <div className="info-text">
-                <span className="info-label">Next Update</span>
-                <span className="info-value">{formatDate(metadata.nextUpdateScheduled)}</span>
+                <span className="info-label">Update Method</span>
+                <span className="info-value">{metadata.updateMethod || 'Manual updates'}</span>
               </div>
             </div>
           </div>
           
           <div className="update-actions">
-            <button className="refresh-button" onClick={() => window.location.reload()}>
-              <RefreshCw className="button-icon" />
-              <span>Refresh Data</span>
+            <button 
+              className="refresh-button" 
+              onClick={onManualUpdate}
+              disabled={isUpdating}
+            >
+              <RefreshCw className={`button-icon ${isUpdating ? 'spinning' : ''}`} />
+              <span>{isUpdating ? 'Updating...' : 'Update Data'}</span>
             </button>
           </div>
         </div>
